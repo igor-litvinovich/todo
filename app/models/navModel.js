@@ -1,9 +1,9 @@
 class NavModel {
     constructor() {
         this.links = [
-            { title: 'All' },
-            { title: 'Active' },
-            { title: 'Completed' }
+            {title: 'All'},
+            {title: 'Active'},
+            {title: 'Completed'}
         ];
 
         this.active = this.links[0];
