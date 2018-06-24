@@ -13,6 +13,7 @@ const TodoList = ({todos, toggleTodo}) => (
         )}
     </ul>
 );
+
 TodoList.propTypes = {
     todos: PropTypes.arrayOf(
         PropTypes.shape({
@@ -23,4 +24,5 @@ TodoList.propTypes = {
     ).isRequired,
     toggleTodo: PropTypes.func.isRequired
 };
+
 export default TodoList
