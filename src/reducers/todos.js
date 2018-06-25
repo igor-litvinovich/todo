@@ -1,6 +1,8 @@
+import todosActions from '../actions/todosActions';
+
 const todos = (state = [], action) => {
     switch (action.type) {
-        case 'ADD_TODO':
+        case todosActions.ADD_TODO:
             return [
                 ...state,
                 {
@@ -9,13 +11,13 @@ const todos = (state = [], action) => {
                     completed: false
                 }
             ];
-        case 'TOGGLE_TODO':
+        case todosActions.TOGGLE_TODO:
             return state.map(todo =>
                 (todo.id === action.payload.id)
                     ? {...todo, completed: !todo.completed}
                     : todo
             );
-        case 'GET_TODOS_SUCCESS': {
+        case todosActions.GET_TODOS_SUCCESS: {
             return state.concat(action.payload);
         }
         default:

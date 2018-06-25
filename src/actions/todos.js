@@ -1,8 +1,9 @@
 import axios from 'axios';
+import todosActions from './todosActions';
 
 let nextTodoId = 0;
 export const addTodo = title => ({
-    type: 'ADD_TODO',
+    type: todosActions.ADD_TODO,
     payload: {
         id: nextTodoId++,
         title: title
@@ -14,12 +15,12 @@ export const getAllTodos = () => {
         try {
             const response = await axios.get('https://jsonplaceholder.typicode.com/todos');
             return dispatch({
-                type: 'GET_TODOS_SUCCESS',
+                type: todosActions.GET_TODOS_SUCCESS,
                 payload: response.data.slice(0, 10)
             });
         } catch (error) {
             return dispatch({
-                type: 'GET_TODOS_ERROR',
+                type: todosActions.GET_TODOS_ERROR,
                 error
             });
         }
@@ -28,6 +29,6 @@ export const getAllTodos = () => {
 };
 
 export const toggleTodo = id => ({
-    type: 'TOGGLE_TODO',
+    type: todosActions.TOGGLE_TODO,
     payload: {id}
 });

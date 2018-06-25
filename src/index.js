@@ -9,7 +9,9 @@ import App from './components/App';
 import rootReducer from './reducers'
 import registerServiceWorker from './registerServiceWorker';
 
-const loggerMiddleware = createLogger();
+const loggerMiddleware = createLogger({
+    collapsed: true
+});
 
 const store = createStore(rootReducer, applyMiddleware(loggerMiddleware, thunk));
 

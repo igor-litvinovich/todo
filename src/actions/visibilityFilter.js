@@ -1,5 +1,7 @@
+import visibilityFilterActions from './visibilityFilterActions';
+
 export const setVisibilityFilter = filter => ({
-    type: 'SET_VISIBILITY_FILTER',
+    type: visibilityFilterActions.SET_VISIBILITY_FILTER,
     payload: {filter}
 });
 
