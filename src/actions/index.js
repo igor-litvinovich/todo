@@ -1,19 +1,42 @@
-let nextTodoId = 0
-export const addTodo = text => ({
+import axios from 'axios';
+
+let nextTodoId = 0;
+export const addTodo = title => ({
     type: 'ADD_TODO',
-    id: nextTodoId++,
-    text
-})
+    payload: {
+        id: nextTodoId++,
+        title: title
+    }
+});
 export const setVisibilityFilter = filter => ({
     type: 'SET_VISIBILITY_FILTER',
-    filter
-})
+    payload: {filter}
+});
 export const toggleTodo = id => ({
     type: 'TOGGLE_TODO',
-    id
-})
+    payload: {id}
+});
 export const VisibilityFilters = {
     SHOW_ALL: 'SHOW_ALL',
     SHOW_COMPLETED: 'SHOW_COMPLETED',
     SHOW_ACTIVE: 'SHOW_ACTIVE'
-}
+};
+
+
+export const getAllTodos = () => {
+    return async (dispatch, getState) => {
+        try {
+            const response = await axios.get('https://jsonplaceholder.typicode.com/todos');
+            return dispatch({
+                type: 'GET_TODOS_SUCCESS',
+                payload: response.data.slice(0, 10)
+            });
+        } catch (error) {
+            return dispatch({
+                type: 'GET_TODOS_ERROR',
+                error
+            });
+        }
+
+    }
+};

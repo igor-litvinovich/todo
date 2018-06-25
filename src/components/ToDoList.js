@@ -5,9 +5,10 @@ import Todo from './Todo'
 class TodoList extends React.Component {
     render() {
         const {todos, toggleTodo} = this.props;
+
         return (
             <ul>
-                {todos.map(todo =>
+                {todos && todos.map(todo =>
                     <Todo
                         key={todo.id}
                         {...todo}
@@ -25,7 +26,7 @@ TodoList.propTypes = {
         PropTypes.shape({
             id: PropTypes.number.isRequired,
             completed: PropTypes.bool.isRequired,
-            text: PropTypes.string.isRequired
+            title: PropTypes.string.isRequired
         }).isRequired
     ).isRequired,
     toggleTodo: PropTypes.func.isRequired
