@@ -1,15 +1,17 @@
 import React from 'react';
 import {connect} from 'react-redux';
+import {bindActionCreators} from 'redux';
 import {addTodo, getAllTodos} from '../actions/todos';
 
 class AddTodo extends React.Component {
     componentDidMount() {
-        this.props.dispatch(getAllTodos());
+        const {getAllTodos} = this.props;
+        getAllTodos();
     }
 
     render() {
         let input = null;
-        const {dispatch} = this.props;
+        const {addTodo} = this.props;
         return (
             <div>
                 <form
@@ -18,7 +20,7 @@ class AddTodo extends React.Component {
                         if (!input.value.trim()) {
                             return
                         }
-                        dispatch(addTodo(input.value));
+                        addTodo(input.value);
                         input.value = ''
                     }}
                 >
@@ -32,4 +34,15 @@ class AddTodo extends React.Component {
     }
 }
 
-export default connect()(AddTodo)
+function mapStateToProps(state) {
+    return state;
+}
+
+function mapDispatchToProps(dispatch) {
+    return {
+        addTodo: bindActionCreators(addTodo, dispatch),
+        getAllTodos: bindActionCreators(getAllTodos, dispatch)
+    };
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(AddTodo)
