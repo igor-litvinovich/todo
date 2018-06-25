@@ -1,6 +1,6 @@
 import React from 'react';
 import {connect} from 'react-redux';
-import {addTodo, getAllTodos} from '../actions';
+import {addTodo, getAllTodos} from '../actions/todos';
 
 class AddTodo extends React.Component {
     componentDidMount() {
